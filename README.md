@@ -15,9 +15,9 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 
 ## History of `Testing`
 
-- Development ➡ QA ➡ Publish
-- Development ➡ Automated QA ➡ Publish
-- Development & Automated QA ➡ Publish
+- Development → QA → Publish
+- Development → Automated QA → Publish
+- Development & Automated QA → Publish
 
 ## Advantage of `Testing`
 
