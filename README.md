@@ -12,3 +12,9 @@ Types of Test
 ## What is `Testing`
 
 The term `testing` is refer to `software testing`. It means testing an `application`, `function`, `service`, `UI`, `performance` or an `APIs specs` to qualify the quality of the service. Also find any software bugs. Ultimately, this is a job to check if a service work as what we expected.
+
+## History of `Testing`
+
+- Development ➡ QA ➡ Publish
+- Development ➡ Automated QA ➡ Publish
+- Development & Automated QA ➡ Publish
