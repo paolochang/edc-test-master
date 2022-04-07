@@ -1,6 +1,6 @@
 # Test Driven Development
 
-Types of Test
+## Types of Test
 
 - Unit Test
 - Functional Test
