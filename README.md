@@ -31,3 +31,11 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 - Reduce code dependencies
 - Easy to document
 - Reduce development time
+
+## Test Pyramid
+
+| Type             | Testing                              | Cost      | Speed |
+| ---------------- | ------------------------------------ | --------- | ----- |
+| E2E Test         | UI, user tests                       | Expensive | Slow  |
+| Integration Test | interaction between modules, classes |           |       |
+| Unit Test        | function, module, class              | Cheap     | Fast  |
