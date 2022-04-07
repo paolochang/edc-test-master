@@ -18,3 +18,16 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 - Development ➡ QA ➡ Publish
 - Development ➡ Automated QA ➡ Publish
 - Development & Automated QA ➡ Publish
+
+## Advantage of `Testing`
+
+- Expect the operation
+- Qualify the requirements
+- Predictable issues
+- Find bugs easily
+- Easy refactoring
+- Easy maintenance
+- Code quality improvement
+- Reduce code dependencies
+- Easy to document
+- Reduce development time
