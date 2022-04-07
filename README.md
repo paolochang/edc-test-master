@@ -39,3 +39,12 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 | E2E Test         | UI, user tests                       | Expensive | Slow  |
 | Integration Test | interaction between modules, classes |           |       |
 | Unit Test        | function, module, class              | Cheap     | Fast  |
+
+## Jest
+
+`Jest` is a JavaScript Testing Framework with a focus on simplicity. It had been designed to ensure correctness of any JavaScript codebase. It works with projects using: `Babel`, `TypeScript`, `Node`, `React`, `Angular`, `Vue` and more.
+
+- zero config
+- snapshots
+- isolated
+- great api

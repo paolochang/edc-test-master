@@ -1,0 +1,23 @@
+{
+  "name": "edc-test-master",
+  "version": "1.0.0",
+  "description": "## Types of Test",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paolochang/edc-test-master.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paolochang/edc-test-master/issues"
+  },
+  "homepage": "https://github.com/paolochang/edc-test-master#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
