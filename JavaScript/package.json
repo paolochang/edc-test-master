@@ -7,6 +7,11 @@
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/paolochang/edc-test-master.git"
@@ -17,10 +22,5 @@
   "bugs": {
     "url": "https://github.com/paolochang/edc-test-master/issues"
   },
-  "homepage": "https://github.com/paolochang/edc-test-master#readme",
-  "devDependencies": {
-    "@types/jest": "^27.4.1",
-    "jest": "^27.5.1"
-  },
-  "dependencies": {}
+  "homepage": "https://github.com/paolochang/edc-test-master#readme"
 }
