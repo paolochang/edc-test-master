@@ -1,51 +1,66 @@
 const Calculator = require("../calculator.js");
 
-test("set", () => {
-  const calc = new Calculator();
-  calc.set(5);
-  expect(calc.value).toBe(5);
-});
+describe("Calculator", () => {
+  let calc;
+  beforeEach(() => {
+    calc = new Calculator();
+  });
 
-test("clear", () => {
-  const calc = new Calculator();
-  calc.set(10);
-  expect(calc.value).toBe(10);
-  calc.clear();
-  expect(calc.value).toBe(0);
-});
+  it("inits with 0", () => {
+    expect(calc.value).toBe(0);
+  });
 
-test("add", () => {
-  const calc = new Calculator();
-  calc.add(10);
-  expect(calc.value).toBe(10);
-});
+  it("set", () => {
+    calc.set(10);
+    expect(calc.value).toBe(10);
+  });
 
-test("add throw error for greater than 100", () => {
-  const calc = new Calculator();
-  calc.add(110);
-  expect(calc.value).toThrow(Error);
-});
+  it("clear", () => {
+    calc.set(10);
+    expect(calc.value).toBe(10);
+    calc.clear();
+    expect(calc.value).toBe(0);
+  });
 
-test("subtract", () => {
-  const calc = new Calculator();
-  calc.set(10);
-  expect(calc.value).toBe(10);
-  calc.subtract(5);
-  expect(calc.value).toBe(5);
-});
+  it("add", () => {
+    calc.add(10);
+    expect(calc.value).toBe(10);
+  });
 
-test("multiply", () => {
-  const calc = new Calculator();
-  calc.set(10);
-  expect(calc.value).toBe(10);
-  calc.multiply(5);
-  expect(calc.value).toBe(50);
-});
+  it("add throw error for greater than 100", () => {
+    calc.add(110);
+    expect(calc.value).toThrow(Error);
+  });
 
-test("divide", () => {
-  const calc = new Calculator();
-  calc.set(50);
-  expect(calc.value).toBe(50);
-  calc.divide(5);
-  expect(calc.value).toBe(10);
+  it("subtract", () => {
+    calc.set(10);
+    expect(calc.value).toBe(10);
+    calc.subtract(5);
+    expect(calc.value).toBe(5);
+  });
+
+  it("multiply", () => {
+    calc.set(10);
+    expect(calc.value).toBe(10);
+    calc.multiply(5);
+    expect(calc.value).toBe(50);
+  });
+
+  describe("divide", () => {
+    it("0 / 0 === NaN", () => {
+      calc.divide(0);
+      expect(calc.value).toBe(NaN);
+    });
+    it("1 / 0 === Infinity", () => {
+      calc.set(1);
+      calc.divide(0);
+      expect(calc.value).toBe(Infinity);
+    });
+    it("divide", () => {
+      calc.set(50);
+      expect(calc.value).toBe(50);
+      calc.divide(5);
+      expect(calc.value).toBe(10);
+    });
+  });
 });
