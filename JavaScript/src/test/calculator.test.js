@@ -22,14 +22,17 @@ describe("Calculator", () => {
     expect(calc.value).toBe(0);
   });
 
-  it("add", () => {
-    calc.add(10);
-    expect(calc.value).toBe(10);
-  });
+  describe("add", () => {
+    it("0 + 10 = 10", () => {
+      calc.add(10);
+      expect(calc.value).toBe(10);
+    });
 
-  it("add throw error for greater than 100", () => {
-    calc.add(110);
-    expect(calc.value).toThrow(Error);
+    it("must throw error for adding greater than 100", () => {
+      expect(() => {
+        calc.add(110);
+      }).toThrow("Value can not be greater than 100");
+    });
   });
 
   it("subtract", () => {
