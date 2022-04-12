@@ -1,7 +1,7 @@
-const ProductClient = require("./product_client");
 class ProductService {
-  constructor() {
-    this.productClient = new ProductClient();
+  // Dependency injection
+  constructor(productClient) {
+    this.productClient = productClient;
   }
 
   fetchAvailableItems() {

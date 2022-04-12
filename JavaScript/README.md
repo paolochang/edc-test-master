@@ -35,3 +35,4 @@
 ## Reference
 
 - [Jest Getting Started](https://jestjs.io/docs/getting-started)
+- [Mocks Aren't Stubs 번역본](https://testing.jabberstory.net/)
