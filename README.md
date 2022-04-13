@@ -10,6 +10,8 @@
    5. [Test Pyramid](#test-pyramid)
    6. [Jest](#jest)
 2. [Testing Principles](#testing-principles)
+   1. [Secrets of Test Code](#secrets-of-test-code)
+   2. [Structure of Test](#structure-of-test)
 3. [References](#references)
 
 ## <a name="about-testing"></a>1. About Testing
@@ -72,6 +74,18 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 3. Create the reusable test utility to reduce repeated test scenarios
 4. Store the test codes separately with the production code which will be deployed
 5. Documentize with the test code
+
+### <a name="structure-of-test"></a>2.2 Structure of Test
+
+| Structure  |                                                       |
+| ---------- | ----------------------------------------------------- |
+| Before     | `beforeEach`, `beforeAll`                             |
+| Test       | `Arrange`, `Act`, `Assert` OR `Given`, `When`, `Then` |
+| After      | `afterEach`, `afterAll`                               |
+
+- `Arrange`, `Given`: prepare an object to test the code
+- `Act`, `When`: execute the test code
+- `Assert`, `Then`: verify the test result to match with the expectation
 
 ## <a name="references"></a>References
 
