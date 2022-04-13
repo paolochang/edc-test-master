@@ -77,7 +77,7 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 
 ### <a name="structure-of-test"></a>2.2 Structure of Test
 
-| Structure  |                                                       |
+| Structure  | Functions                                             |
 | ---------- | ----------------------------------------------------- |
 | Before     | `beforeEach`, `beforeAll`                             |
 | Test       | `Arrange`, `Act`, `Assert` OR `Given`, `When`, `Then` |
@@ -86,6 +86,16 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 - `Arrange`, `Given`: prepare an object to test the code
 - `Act`, `When`: execute the test code
 - `Assert`, `Then`: verify the test result to match with the expectation
+
+### <a name="first"></a>2.3 FIRST
+
+**FIRST**
+
+- **Fast**: remove dependencies to reduce test time (files, database, network)
+- **Isolated**: test isolated code to prove the unit test
+- **Repeatable**: must return the same result all the time (should not be effected by environment or network)
+- **Self-Validating**: validate the test with the Jest API: `expect`, `toBe`, `toEqual`, add `CI/CD`
+- **Timely**: write the test code before adding new functions, refactoring, or the deployment
 
 ## <a name="references"></a>References
 
