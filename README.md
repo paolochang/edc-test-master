@@ -1,6 +1,20 @@
 # Test Driven Development
 
-## Types of Test
+## Index
+
+1. [About Testing](#about-testing)
+   1. [Types of Test](#types-of-test)
+   2. [What is Testing](#what-is-testing)
+   3. [History of Testing](#history-of-testing)
+   4. [Advantage of Testing](#advantage-of-testing)
+   5. [Test Pyramid](#test-pyramid)
+   6. [Jest](#jest)
+2. [Testing Principles](#testing-principles)
+3. [References](#references)
+
+## <a name="about-testing"></a>1. About Testing
+
+### <a name="types-of-test"></a>1.1. Types of Test
 
 - Unit Test
 - Functional Test
@@ -9,17 +23,17 @@
 - Contract Test
 - E2E Test
 
-## What is `Testing`
+### <a name="what-is-testing"></a>1.2. What is `Testing`
 
 The term `testing` is refer to `software testing`. It means testing an `application`, `function`, `service`, `UI`, `performance` or an `APIs specs` to qualify the quality of the service. Also find any software bugs. Ultimately, this is a job to check if a service work as what we expected.
 
-## History of `Testing`
+### <a name="history-of-testing"></a>1.3. History of `Testing`
 
 - Development → QA → Publish
 - Development → Automated QA → Publish
 - Development & Automated QA → Publish
 
-## Advantage of `Testing`
+### <a name="advantage-of-testing"></a>1.4. Advantage of `Testing`
 
 - Expect the operation
 - Qualify the requirements
@@ -32,7 +46,7 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 - Easy to document
 - Reduce development time
 
-## Test Pyramid
+### <a name="test-pyramid"></a>1.5. Test Pyramid
 
 | Type             | Testing                              | Cost      | Speed |
 | ---------------- | ------------------------------------ | --------- | ----- |
@@ -40,7 +54,7 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 | Integration Test | interaction between modules, classes |           |       |
 | Unit Test        | function, module, class              | Cheap     | Fast  |
 
-## Jest
+### <a name="jest"></a>1.6. Jest
 
 `Jest` is a JavaScript Testing Framework with a focus on simplicity. It had been designed to ensure correctness of any JavaScript codebase. It works with projects using: `Babel`, `TypeScript`, `Node`, `React`, `Angular`, `Vue` and more.
 
@@ -48,3 +62,17 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 - snapshots
 - isolated
 - great api
+
+## <a name="testing-principles"></a>2. Testing Principles
+
+### <a name="secrets-of-test-code"></a>2.1 Secrets of Test Code
+
+1. Support and maintain the test code persistently
+2. Be self-sufficient and avoid dependencies
+3. Create the reusable test utility to reduce repeated test scenarios
+4. Store the test codes separately with the production code which will be deployed
+5. Documentize with the test code
+
+## <a name="references"></a>References
+
+- [8 Principles of Better Unit Testing](https://esj.com/Articles/2012/09/24/Better-Unit-Testing.aspx?Page=1)
