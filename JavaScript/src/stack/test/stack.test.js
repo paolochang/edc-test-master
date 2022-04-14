@@ -14,7 +14,8 @@ describe("Stack", () => {
   it("allows to push an item", () => {
     stack.push("🍌");
     expect(stack.size()).toBe(1);
-    expect(stack.array[0]).toBe("🍌");
+    // BAD: will fail if stack implementation changes
+    // expect(stack.array[0]).toBe("🍌");
   });
 
   describe("pop", () => {
