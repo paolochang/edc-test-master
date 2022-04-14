@@ -14,6 +14,7 @@
    2. [Structure of Test](#structure-of-test)
    3. [FIRST](#first)
    4. [Right-BICEP](#right-bicep)
+   5. [Test Coverage: CORRECT](#test-coverage-correct)
 3. [References](#references)
 
 ## <a name="about-testing"></a>1. About Testing
