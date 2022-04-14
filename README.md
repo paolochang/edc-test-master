@@ -13,6 +13,7 @@
    1. [Secrets of Test Code](#secrets-of-test-code)
    2. [Structure of Test](#structure-of-test)
    3. [FIRST](#first)
+   4. [Right-BICEP](#right-bicep)
 3. [References](#references)
 
 ## <a name="about-testing"></a>1. About Testing
@@ -92,11 +93,19 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 
 **FIRST**
 
-- **Fast**: remove dependencies to reduce test time (files, database, network)
-- **Isolated**: test isolated code to prove the unit test
-- **Repeatable**: must return the same result all the time (should not be effected by environment or network)
-- **Self-Validating**: validate the test with the Jest API: `expect`, `toBe`, `toEqual`, add `CI/CD`
-- **Timely**: write the test code before adding new functions, refactoring, or the deployment
+- **F**ast: remove dependencies to reduce test time (files, database, network)
+- **I**solated: test isolated code to prove the unit test
+- **R**epeatable: must return the same result all the time (should not be effected by environment or network)
+- **S**elf-Validating: validate the test with the Jest API: `expect`, `toBe`, `toEqual`, add `CI/CD`
+- **T**imely: write the test code before adding new functions, refactoring, or the deployment
+
+### <a name="right-bicep"></a>2.4 Right-BICEP
+
+- **B**oundary conditions: test all the cases include `null`, `undefined`, `special character`, `invalid format of email`, `small number`, `big number`, `duplicate`, `mis-ordered`
+- **I**nverse relationship: must return to the original state by inverse behaviour
+- **C**ross-check: is a way of ensuring that everything adds up and balances, much like the general ledger in a double-entry bookkeeping system
+- **E**rror conditions: handling all error conditions such as `network error`, `lack of memory`, `database`
+- **P**erformance characteristics: test the performance by specific results
 
 ## <a name="references"></a>References
 
