@@ -107,6 +107,16 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 - **E**rror conditions: handling all error conditions such as `network error`, `lack of memory`, `database`
 - **P**erformance characteristics: test the performance by specific results
 
+### <a name="test-coverage-correct"></a>2.5 Test Coverage: CORRECT
+
+- **C**onformance: test case must follow the format of `phone number`, `email`, `id`, `file extension`
+- **O**rdering: test case must follow the order
+- **R**ange: test case must tested within the range (handle the error for the test with out of range)
+- **R**eference: test all conditions with/without the reference of the unit test
+- **E**xistence: handle all test cases with the `null`, `undefined`, `''`, 0
+- **C**ardinality: test with `0-1-N` rule
+- **T**ime: test `unordered case`, `time delay`, `locale time`
+
 ## <a name="references"></a>References
 
 - [8 Principles of Better Unit Testing](https://esj.com/Articles/2012/09/24/Better-Unit-Testing.aspx?Page=1)
