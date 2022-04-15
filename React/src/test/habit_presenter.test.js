@@ -4,7 +4,6 @@ describe("HabitPresenter", () => {
   const habits = [
     { id: 1, name: "Reading", count: 1 },
     { id: 2, name: "Running", count: 0 },
-    { id: 3, name: "Coding", count: 0 },
   ];
 
   let habitPresenter;
@@ -19,13 +18,13 @@ describe("HabitPresenter", () => {
     expect(habitPresenter.getHabits()).toEqual(habits);
   });
 
-  it("increments habit count and call update callback", () => {
+  it("increments habit count", () => {
     habitPresenter.setIncrement(habits[0], update);
     expect(habitPresenter.getHabits()[0].count).toBe(2);
     checkUpdateIsCalled();
   });
 
-  it("decrements habit count and call update callback", () => {
+  it("decrements habit count", () => {
     habitPresenter.setDecrement(habits[0], update);
     expect(habitPresenter.getHabits()[0].count).toBe(0);
     checkUpdateIsCalled();
@@ -35,6 +34,28 @@ describe("HabitPresenter", () => {
     habitPresenter.setDecrement(habits[0], update);
     habitPresenter.setDecrement(habits[0], update);
     expect(habitPresenter.getHabits()[0].count).toBe(0);
+  });
+
+  it("deletes habit from the list", () => {
+    habitPresenter.deleteHabit(habits[0], update);
+    expect(habitPresenter.getHabits().length).toBe(1);
+    expect(habitPresenter.getHabits()[0].name).toBe("Running");
+    checkUpdateIsCalled();
+  });
+
+  it("adds new habit from the list", () => {
+    habitPresenter.addHabit("Coding", update);
+    expect(habitPresenter.getHabits().length).toBe(3);
+    expect(habitPresenter.getHabits()[2].name).toBe("Coding");
+    expect(habitPresenter.getHabits()[2].count).toBe(0);
+    checkUpdateIsCalled();
+  });
+
+  it("resets all habit's count to 0", () => {
+    habitPresenter.resetHabits(update);
+    expect(habitPresenter.getHabits()[0].count).toBe(0);
+    expect(habitPresenter.getHabits()[1].count).toBe(0);
+    checkUpdateIsCalled();
   });
 
   function checkUpdateIsCalled() {
