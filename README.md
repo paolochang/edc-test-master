@@ -53,6 +53,8 @@ The term `testing` is refer to `software testing`. It means testing an `applicat
 
 ### <a name="test-pyramid"></a>1.5. Test Pyramid
 
+<img src="/JavaScript/asset/test-pyramid.png" width="600px" title="Test Pyramid" alt="Test Pyramid"></img><br/>
+
 | Type             | Testing                              | Cost      | Speed |
 | ---------------- | ------------------------------------ | --------- | ----- |
 | E2E Test         | UI, user tests                       | Expensive | Slow  |
