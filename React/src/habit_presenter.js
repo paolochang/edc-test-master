@@ -20,7 +20,7 @@ export default class HabitPresenter {
   setDecrement(habit, update) {
     this.habits = this.habits.map((item) => {
       if (item.id === habit.id) {
-        const count = habit.count - 1;
+        const count = item.count - 1;
         return { ...habit, count: count < 0 ? 0 : count };
       }
       return item;

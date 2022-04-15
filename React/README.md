@@ -6,6 +6,20 @@
 
 <img src="/React/demo/habit.png" width="600px" title="Habit Tracker" alt="Habit Tracker"></img><br/>
 
+Unit Test 작업시 `auto-complete` 기능이 작동하지 않을때:
+
+1.  Install @types/jest as dev dependency:
+
+        $ npm install @types/jest --save-dev
+
+2.  Create jsconfig.json:
+
+        {
+            "typeAcquisition": {
+                "include": ["jest"]
+            }
+        }
+
 ## References:
 
 - [React Docs: Testing Overview](https://reactjs.org/docs/testing.html)
