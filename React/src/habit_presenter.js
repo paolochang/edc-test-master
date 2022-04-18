@@ -1,6 +1,7 @@
 export default class HabitPresenter {
-  constructor(habits) {
+  constructor(habits, maxHabits) {
     this.habits = habits;
+    this.maxHabits = maxHabits;
   }
 
   getHabits() {
@@ -34,6 +35,10 @@ export default class HabitPresenter {
   }
 
   addHabit(habit, update) {
+    if (this.habits.length === this.maxHabits)
+      throw new Error(
+        `The habits cannot be exceeded ${this.maxHabits} habits.`
+      );
     this.habits = [...this.habits, { id: Date.now(), name: habit, count: 0 }];
     update(this.habits);
   }
