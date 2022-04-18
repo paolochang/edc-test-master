@@ -44,6 +44,9 @@ export default class HabitPresenter {
   }
 
   resetHabits(update) {
+    // create new object
+    // return { ...habit, count: 0 };
+    // reset habit count to 0 on the existing object
     this.habits = this.habits.map((habit) => {
       if (habit.count !== 0) {
         return { ...habit, count: 0 };

@@ -43,26 +43,37 @@ describe("HabitPresenter", () => {
     checkUpdateIsCalled();
   });
 
-  it("adds new habit from the list", () => {
-    habitPresenter.addHabit("Coding", update);
-    expect(habitPresenter.getHabits().length).toBe(3);
-    expect(habitPresenter.getHabits()[2].name).toBe("Coding");
-    expect(habitPresenter.getHabits()[2].count).toBe(0);
-    checkUpdateIsCalled();
+  describe("add", () => {
+    it("adds new habit from the list", () => {
+      habitPresenter.addHabit("Coding", update);
+      expect(habitPresenter.getHabits().length).toBe(3);
+      expect(habitPresenter.getHabits()[2].name).toBe("Coding");
+      expect(habitPresenter.getHabits()[2].count).toBe(0);
+      checkUpdateIsCalled();
+    });
+
+    it("throws an error when the max habits limit is exceeded", () => {
+      habitPresenter.addHabit("Coding", update);
+      expect(() => habitPresenter.addHabit("Testing", update)).toThrow(
+        "The habits cannot be exceeded 3 habits."
+      );
+    });
   });
 
-  it("throws an error when the max habits limit is exceeded", () => {
-    habitPresenter.addHabit("Coding", update);
-    expect(() => habitPresenter.addHabit("Testing", update)).toThrow(
-      "The habits cannot be exceeded 3 habits."
-    );
-  });
+  describe("reset", () => {
+    it("set all habit's count to 0", () => {
+      habitPresenter.resetHabits(update);
+      expect(habitPresenter.getHabits()[0].count).toBe(0);
+      expect(habitPresenter.getHabits()[1].count).toBe(0);
+      checkUpdateIsCalled();
+    });
 
-  it("resets all habit's count to 0", () => {
-    habitPresenter.resetHabits(update);
-    expect(habitPresenter.getHabits()[0].count).toBe(0);
-    expect(habitPresenter.getHabits()[1].count).toBe(0);
-    checkUpdateIsCalled();
+    it("does not create new object when count is 0", () => {
+      const habits = habitPresenter.getHabits();
+      habitPresenter.resetHabits(update);
+      const updateHabits = habitPresenter.getHabits();
+      expect(updateHabits[1]).toBe(habits[1]);
+    });
   });
 
   function checkUpdateIsCalled() {
