@@ -8,7 +8,7 @@
 
 Unit Test 작업시 `auto-complete` 기능이 작동하지 않을때:
 
-1.  Install @types/jest as dev dependency:
+1.  Install `@types/jest` as dev dependency:
 
         $ npm install @types/jest --save-dev
 
@@ -19,6 +19,22 @@ Unit Test 작업시 `auto-complete` 기능이 작동하지 않을때:
                 "include": ["jest"]
             }
         }
+
+Component Test Snapshot:
+
+- Use `render` from `testing-library`:
+
+        const component = render(<HabitAddForm onAdd={jest.fn()} />);
+        expect(component.container).toMatchSnapshot();
+
+OR
+
+- Install `react-test-renderer`:
+
+        $ npm i react-test-renderer --save-dev
+
+        const component = renderer.create<HabitAddForm onAdd={jset.fn()} />);
+        expect(component.toJSON()).toMatchSnapshot();
 
 ## References:
 
