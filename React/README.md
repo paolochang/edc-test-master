@@ -33,16 +33,16 @@ OR
 
 - Install `react-test-renderer`:
 
-        ```sh
-        $ npm i react-test-renderer --save-dev
-        ```
+```sh
+$ npm i react-test-renderer --save-dev
+```
 
-        Then
+Then
 
-        ```js
-        const component = renderer.create<HabitAddForm onAdd={jset.fn()} />);
-        expect(component.toJSON()).toMatchSnapshot();
-        ```
+```js
+const component = renderer.create<HabitAddForm onAdd={jset.fn()} />);
+expect(component.toJSON()).toMatchSnapshot();
+```
 
 ## References:
 
