@@ -24,17 +24,25 @@ Component Test Snapshot:
 
 - Use `render` from `testing-library`:
 
+        ```js
         const component = render(<HabitAddForm onAdd={jest.fn()} />);
         expect(component.container).toMatchSnapshot();
+        ```
 
 OR
 
 - Install `react-test-renderer`:
 
+        ```sh
         $ npm i react-test-renderer --save-dev
+        ```
 
+        Then
+
+        ```js
         const component = renderer.create<HabitAddForm onAdd={jset.fn()} />);
         expect(component.toJSON()).toMatchSnapshot();
+        ```
 
 ## References:
 
