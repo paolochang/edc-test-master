@@ -6,9 +6,11 @@
 
 <img src="/React/demo/habit.png" width="600px" title="Habit Tracker" alt="Habit Tracker"></img><br/>
 
-Unit Test 작업시 `auto-complete` 기능이 작동하지 않을때:
+## Tips
 
-1.  Install @types/jest as dev dependency:
+### Unit Test 작업시 `auto-complete` 기능이 작동하지 않을때:
+
+1.  Install `@types/jest` as dev dependency:
 
         $ npm install @types/jest --save-dev
 
@@ -19,6 +21,28 @@ Unit Test 작업시 `auto-complete` 기능이 작동하지 않을때:
                 "include": ["jest"]
             }
         }
+
+### Component Test Snapshot:
+
+- Use `render` from `testing-library`:
+
+        ```js
+        const component = render(<HabitAddForm onAdd={jest.fn()} />);
+        expect(component.container).toMatchSnapshot();
+        ```
+
+OR
+
+- Use `react-test-renderer`
+
+  - Install `react-test-renderer`:
+
+        $ npm i react-test-renderer --save-dev
+
+  - Use `renderer.create()`:
+
+        const component = renderer.create(<HabitAddForm onAdd={jset.fn()} />);
+        expect(component.toJSON()).toMatchSnapshot();
 
 ## References:
 
