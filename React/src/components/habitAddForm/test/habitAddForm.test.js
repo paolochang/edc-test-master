@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import HabitAddForm from "../habitAddForm";
 
 describe("habitAddForm", () => {
-  it("snapshot renders", () => {
+  it("compares snapshot", () => {
     const component = render(<HabitAddForm onAdd={jest.fn()} />);
     expect(component.container).toMatchSnapshot();
   });
