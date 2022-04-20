@@ -6,7 +6,9 @@
 
 <img src="/React/demo/habit.png" width="600px" title="Habit Tracker" alt="Habit Tracker"></img><br/>
 
-Unit Test 작업시 `auto-complete` 기능이 작동하지 않을때:
+## Tips
+
+### Unit Test 작업시 `auto-complete` 기능이 작동하지 않을때:
 
 1.  Install `@types/jest` as dev dependency:
 
@@ -20,7 +22,7 @@ Unit Test 작업시 `auto-complete` 기능이 작동하지 않을때:
             }
         }
 
-Component Test Snapshot:
+### Component Test Snapshot:
 
 - Use `render` from `testing-library`:
 
