@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`habitAddForm snapshot renders 1`] = `
+exports[`habitAddForm compares snapshot 1`] = `
 <div>
   <form
     class="add-form"

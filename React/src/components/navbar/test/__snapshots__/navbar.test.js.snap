@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar compares snapshot 1`] = `
+<div>
+  <nav
+    class="navbar"
+  >
+    <i
+      class="navbar-logo fas fa-leaf"
+    />
+    <span>
+      Habit Tracker
+    </span>
+    <span
+      class="navbar-count"
+    >
+      4
+    </span>
+  </nav>
+</div>
+`;

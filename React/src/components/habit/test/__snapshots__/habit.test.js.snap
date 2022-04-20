@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`habit compares snapshot 1`] = `
+<div>
+  <li
+    class="habit"
+  >
+    <span
+      class="habit-name"
+    >
+      Reading
+    </span>
+    <span
+      class="habit-count"
+    >
+      1
+    </span>
+    <button
+      class="habit-button habit-increase"
+      title="increase"
+    >
+      <i
+        class="fas fa-plus-square"
+      />
+    </button>
+    <button
+      class="habit-button habit-decrease"
+      title="decrease"
+    >
+      <i
+        class="fas fa-minus-square"
+      />
+    </button>
+    <button
+      class="habit-button habit-delete"
+      title="delete"
+    >
+      <i
+        class="fas fa-trash"
+      />
+    </button>
+  </li>
+</div>
+`;

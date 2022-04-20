@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Habits compares snapshot 1`] = `
+<div>
+  <div
+    class="habits"
+  >
+    <form
+      class="add-form"
+    >
+      <input
+        class="add-input"
+        placeholder="Habit"
+        type="text"
+      />
+      <button
+        class="add-button"
+      >
+        Add
+      </button>
+    </form>
+    <ul>
+      <li
+        class="habit"
+      >
+        <span
+          class="habit-name"
+        >
+          Reading
+        </span>
+        <span
+          class="habit-count"
+        >
+          1
+        </span>
+        <button
+          class="habit-button habit-increase"
+          title="increase"
+        >
+          <i
+            class="fas fa-plus-square"
+          />
+        </button>
+        <button
+          class="habit-button habit-decrease"
+          title="decrease"
+        >
+          <i
+            class="fas fa-minus-square"
+          />
+        </button>
+        <button
+          class="habit-button habit-delete"
+          title="delete"
+        >
+          <i
+            class="fas fa-trash"
+          />
+        </button>
+      </li>
+      <li
+        class="habit"
+      >
+        <span
+          class="habit-name"
+        >
+          Running
+        </span>
+        <span
+          class="habit-count"
+        >
+          0
+        </span>
+        <button
+          class="habit-button habit-increase"
+          title="increase"
+        >
+          <i
+            class="fas fa-plus-square"
+          />
+        </button>
+        <button
+          class="habit-button habit-decrease"
+          title="decrease"
+        >
+          <i
+            class="fas fa-minus-square"
+          />
+        </button>
+        <button
+          class="habit-button habit-delete"
+          title="delete"
+        >
+          <i
+            class="fas fa-trash"
+          />
+        </button>
+      </li>
+    </ul>
+    <button
+      class="habits-reset"
+    >
+      Reset All
+    </button>
+  </div>
+</div>
+`;
