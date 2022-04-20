@@ -31,18 +31,16 @@ Component Test Snapshot:
 
 OR
 
-- Install `react-test-renderer`:
+- Use `react-test-renderer`
 
-```sh
-$ npm i react-test-renderer --save-dev
-```
+  - Install `react-test-renderer`:
 
-Then
+        $ npm i react-test-renderer --save-dev
 
-```js
-const component = renderer.create<HabitAddForm onAdd={jset.fn()} />);
-expect(component.toJSON()).toMatchSnapshot();
-```
+  - Use `renderer.create()`:
+
+        const component = renderer.create(<HabitAddForm onAdd={jset.fn()} />);
+        expect(component.toJSON()).toMatchSnapshot();
 
 ## References:
 
