@@ -1,7 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Habits compares snapshot 1`] = `
+exports[`App compares snapshot 1`] = `
 <div>
+  <nav
+    class="navbar"
+  >
+    <i
+      class="navbar-logo fas fa-leaf"
+    />
+    <span>
+      Habit Tracker
+    </span>
+    <span
+      class="navbar-count"
+      data-testid="total-count"
+    >
+      1
+    </span>
+  </nav>
   <div
     class="habits"
   >
@@ -33,7 +49,7 @@ exports[`Habits compares snapshot 1`] = `
           class="habit-count"
           data-testid="habit-count"
         >
-          1
+          0
         </span>
         <button
           class="habit-button habit-increase"
@@ -74,6 +90,46 @@ exports[`Habits compares snapshot 1`] = `
           data-testid="habit-count"
         >
           0
+        </span>
+        <button
+          class="habit-button habit-increase"
+          title="increase"
+        >
+          <i
+            class="fas fa-plus-square"
+          />
+        </button>
+        <button
+          class="habit-button habit-decrease"
+          title="decrease"
+        >
+          <i
+            class="fas fa-minus-square"
+          />
+        </button>
+        <button
+          class="habit-button habit-delete"
+          title="delete"
+        >
+          <i
+            class="fas fa-trash"
+          />
+        </button>
+      </li>
+      <li
+        class="habit"
+      >
+        <span
+          class="habit-name"
+          data-testid="habit-name"
+        >
+          Coding
+        </span>
+        <span
+          class="habit-count"
+          data-testid="habit-count"
+        >
+          1
         </span>
         <button
           class="habit-button habit-increase"

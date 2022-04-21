@@ -7,11 +7,13 @@ exports[`habit compares snapshot 1`] = `
   >
     <span
       class="habit-name"
+      data-testid="habit-name"
     >
       Reading
     </span>
     <span
       class="habit-count"
+      data-testid="habit-count"
     >
       1
     </span>
