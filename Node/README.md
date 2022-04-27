@@ -30,3 +30,37 @@
    ```sh
    $ jest --init
    ```
+
+2. Create `.env.test`
+
+3. Enable **setupFiles** in `jest.config.mjs`
+
+   ```mjs
+   {
+     setupFiles: ["dotenv/config"],
+   }
+   ```
+
+4. Setup **test scrtips** in `package.json`
+
+   ```json
+   {
+     "scripts": {
+       "test": "DOTENV_CONFIG_PATH=./.env.test jest --watchAll"
+     }
+   }
+   ```
+
+5. In `Windows`, install `cross-env` **(optional)**
+
+   ```sh
+   $ npm install --save-dev cross-env
+   ```
+
+   ```json
+   {
+     "scripts": {
+       "test": "cross-env DOTENV_CONFIG_PATH=./.env.test jest --watchAll"
+     }
+   }
+   ```
