@@ -51,7 +51,7 @@
    }
    ```
 
-5. In `Windows`, install `cross-env` **(optional)**
+   In `Windows`, install `cross-env` **(optional)**
 
    ```sh
    $ npm install --save-dev cross-env
@@ -63,4 +63,10 @@
        "test": "cross-env DOTENV_CONFIG_PATH=./.env.test jest --watchAll"
      }
    }
+   ```
+
+5. Run test
+
+   ```
+   $ npm run test
    ```
