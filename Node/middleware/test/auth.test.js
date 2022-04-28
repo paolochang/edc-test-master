@@ -38,6 +38,7 @@ describe("auth middleware", () => {
 
     expect(response.statusCode).toBe(401);
     expect(response._getJSONData().message).toBe("Authentication Error");
+    expect(next).not.toBeCalled();
   });
 
   it("returns 401 for the request with invalid JWT Token", async () => {
@@ -59,6 +60,7 @@ describe("auth middleware", () => {
 
     expect(response.statusCode).toBe(401);
     expect(response._getJSONData().message).toBe("Authentication Error");
+    expect(next).not.toBeCalled();
   });
 
   it("returns 401 when the user is not found by id", async () => {
@@ -82,5 +84,6 @@ describe("auth middleware", () => {
 
     expect(response.statusCode).toBe(401);
     expect(response._getJSONData().message).toBe("Authentication Error");
+    expect(next).not.toBeCalled();
   });
 });
