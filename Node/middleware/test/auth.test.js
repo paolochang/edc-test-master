@@ -1,4 +1,4 @@
-import httpMock from "node-mocks-http";
+import httpMocks from "node-mocks-http";
 import { isAuth } from "../auth";
 import faker from "faker";
 import jwt from "jsonwebtoken";
@@ -9,11 +9,11 @@ jest.mock("../../data/auth.js");
 
 describe("auth middleware", () => {
   it("returns 401 for the request without Authorization header", async () => {
-    const request = httpMock.createRequest({
+    const request = httpMocks.createRequest({
       method: "GET",
       url: "/tweets",
     });
-    const response = httpMock.createResponse();
+    const response = httpMocks.createResponse();
     const next = jest.fn();
 
     await isAuth(request, response, next);
@@ -24,14 +24,14 @@ describe("auth middleware", () => {
   });
 
   it("returns 401 for the request with unsupported Authorization header", async () => {
-    const request = httpMock.createRequest({
+    const request = httpMocks.createRequest({
       method: "GET",
       url: "/tweets",
       headers: {
         authorization: "Basic",
       },
     });
-    const response = httpMock.createResponse();
+    const response = httpMocks.createResponse();
     const next = jest.fn();
 
     await isAuth(request, response, next);
@@ -43,14 +43,14 @@ describe("auth middleware", () => {
 
   it("returns 401 for the request with invalid JWT Token", async () => {
     const token = faker.random.alphaNumeric(128);
-    const request = httpMock.createRequest({
+    const request = httpMocks.createRequest({
       method: "GET",
       url: "/tweets",
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
-    const response = httpMock.createResponse();
+    const response = httpMocks.createResponse();
     const next = jest.fn();
     jwt.verify = jest.fn((token, secret, callback) => {
       callback(new Error("bad token"), undefined);
@@ -66,14 +66,14 @@ describe("auth middleware", () => {
   it("returns 401 when the user is not found by id", async () => {
     const token = faker.random.alphaNumeric(128);
     const userId = faker.random.alphaNumeric(32);
-    const request = httpMock.createRequest({
+    const request = httpMocks.createRequest({
       method: "GET",
       url: "/tweets",
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
-    const response = httpMock.createResponse();
+    const response = httpMocks.createResponse();
     const next = jest.fn();
     jwt.verify = jest.fn((token, secret, callback) => {
       callback(undefined, { id: userId });
@@ -90,14 +90,14 @@ describe("auth middleware", () => {
   it("returns 200 with valid Authorization header with token", async () => {
     const token = faker.random.alphaNumeric(128);
     const userId = faker.random.alphaNumeric(32);
-    const request = httpMock.createRequest({
+    const request = httpMocks.createRequest({
       method: "GET",
       url: "/tweets",
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
-    const response = httpMock.createResponse();
+    const response = httpMocks.createResponse();
     const next = jest.fn();
     jwt.verify = jest.fn((token, secret, callback) => {
       callback(undefined, { id: userId });
