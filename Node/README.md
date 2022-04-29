@@ -70,3 +70,25 @@
    ```
    $ npm run test
    ```
+
+## Jest CLI Options
+
+### Running from the command line
+
+- Run watch mode:
+
+  ```sh
+  $ jest --watch #runs jest -o by default
+  $ jest --watchAll #runs all tests
+  ```
+
+- Run coverage:
+
+  ```sh
+  $ jest --coverage
+  ```
+
+### Options
+
+- `--init`: Generate a basic configuration file. Based on your project, Jest will ask you a few questions that will help to generate a jest.config.js file with a short description for each option.
+- `--verbose`: Display individual test results with the test suite hierarchy.
