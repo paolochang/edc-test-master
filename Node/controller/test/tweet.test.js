@@ -140,6 +140,31 @@ describe("TweetController", () => {
       response = httpMocks.createResponse();
     });
 
+    it("returns 404 if tweet is not found", async () => {
+      const error = { message: `Tweet not found: ${tweetId}` };
+      tweetsRepository.getById = () => undefined;
+      tweetsRepository.update = jest.fn();
+
+      await tweetController.updateTweet(request, response);
+
+      expect(response.statusCode).toBe(404);
+      expect(response._getJSONData()).toEqual(error);
+      expect(tweetsRepository.update).not.toHaveBeenCalled();
+    });
+
+    it("returns 403 if tweet does not belong to userId", async () => {
+      tweetsRepository.getById = () => ({
+        text: faker.random.words(3),
+        userId: faker.datatype.uuid(),
+      });
+      tweetsRepository.update = jest.fn();
+
+      await tweetController.updateTweet(request, response);
+
+      expect(response.statusCode).toBe(403);
+      expect(tweetsRepository.update).not.toHaveBeenCalled();
+    });
+
     it("returns 200 with updated tweet", async () => {
       tweetsRepository.getById = () => ({
         text: faker.random.words(3),
@@ -154,5 +179,55 @@ describe("TweetController", () => {
     });
   });
 
-  describe("deleteTweet", () => {});
+  describe("deleteTweet", () => {
+    let tweetId, request, response, userId;
+
+    beforeEach(() => {
+      tweetId = faker.datatype.uuid();
+      userId = faker.datatype.uuid();
+      request = httpMocks.createRequest({
+        params: { id: tweetId },
+        userId,
+      });
+      response = httpMocks.createResponse();
+    });
+
+    it("returns 404 if tweet is not found", async () => {
+      const error = { message: `Tweet not found: ${tweetId}` };
+      tweetsRepository.getById = () => undefined;
+      tweetsRepository.remove = jest.fn();
+
+      await tweetController.deleteTweet(request, response);
+
+      expect(response.statusCode).toBe(404);
+      expect(response._getJSONData()).toEqual(error);
+      expect(tweetsRepository.remove).not.toHaveBeenCalled();
+    });
+
+    it("returns 403 if tweet does not belong to userId", async () => {
+      tweetsRepository.getById = () => ({
+        text: faker.random.words(3),
+        userId: faker.datatype.uuid(),
+      });
+      tweetsRepository.remove = jest.fn();
+
+      await tweetController.deleteTweet(request, response);
+
+      expect(response.statusCode).toBe(403);
+      expect(tweetsRepository.remove).not.toHaveBeenCalled();
+    });
+
+    it("returns 200 and delete tweet", async () => {
+      tweetsRepository.getById = () => ({
+        text: faker.random.words(3),
+        userId,
+      });
+      tweetsRepository.remove = jest.fn();
+
+      await tweetController.deleteTweet(request, response);
+
+      expect(response.statusCode).toBe(204);
+      expect(tweetsRepository.remove).toHaveBeenCalledWith(tweetId);
+    });
+  });
 });
