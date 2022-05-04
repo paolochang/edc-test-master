@@ -9,7 +9,7 @@ import { config } from "./config.js";
 import { initSocket, getSocketIO } from "./connection/socket.js";
 import { sequelize } from "./db/database.js";
 import { TweetController } from "./controller/tweet.js";
-import * as tweetRspository from "./data/tweet";
+import * as tweetRspository from "./data/tweet.js";
 
 const app = express();
 
