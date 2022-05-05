@@ -1,7 +1,6 @@
 import express from "express";
 import "express-async-errors";
 import { body } from "express-validator";
-import * as tweetController from "../controller/tweet.js";
 import { isAuth } from "../middleware/auth.js";
 import { validate } from "../middleware/validator.js";
 
@@ -31,4 +30,5 @@ export default function tweetsRouter(tweetController) {
 
   // DELETE /tweets/:id
   router.delete("/:id", isAuth, tweetController.deleteTweet);
+  return router;
 }

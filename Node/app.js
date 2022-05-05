@@ -8,8 +8,10 @@ import authRouter from "./router/auth.js";
 import { config } from "./config.js";
 import { initSocket, getSocketIO } from "./connection/socket.js";
 import { sequelize } from "./db/database.js";
+import { AuthController } from "./controller/auth.js";
+import * as userRepository from "./data/auth.js";
 import { TweetController } from "./controller/tweet.js";
-import * as tweetRspository from "./data/tweet";
+import * as tweetRepository from "./data/tweet.js";
 
 const app = express();
 
@@ -24,9 +26,9 @@ app.use(morgan("tiny"));
 
 app.use(
   "/tweets",
-  tweetsRouter(new TweetController(tweetRspository, getSocketIO))
+  tweetsRouter(new TweetController(tweetRepository, getSocketIO))
 );
-app.use("/auth", authRouter);
+app.use("/auth", authRouter(new AuthController(userRepository)));
 
 app.use((req, res, next) => {
   res.sendStatus(404);
