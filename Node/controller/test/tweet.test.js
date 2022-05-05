@@ -1,9 +1,6 @@
 import faker from "faker";
 import { TweetController } from "../tweet.js";
 import httpMocks from "node-mocks-http";
-// import * as tweetsRepository from "../../data/tweet.js";
-
-jest.mock("../../data/tweet.js");
 
 describe("TweetController", () => {
   let tweetController;
