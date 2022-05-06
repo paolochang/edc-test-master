@@ -88,6 +88,18 @@
   $ jest --coverage
   ```
 
+  To remove `Node/coverage/lcov-report` on the coverage report
+
+  ```mjs
+  export default {
+    collectCoverageFrom: [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+    ],
+  };
+  ```
+
 ### Options
 
 - `--init`: Generate a basic configuration file. Based on your project, Jest will ask you a few questions that will help to generate a jest.config.js file with a short description for each option.
