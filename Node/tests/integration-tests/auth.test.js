@@ -13,6 +13,7 @@ import { sequelize } from "../../db/database.js";
 describe("INTEGRATION TEST: auth", () => {
   let server;
   let request;
+  let tester;
 
   beforeAll(async () => {
     server = await startServer();
@@ -20,6 +21,7 @@ describe("INTEGRATION TEST: auth", () => {
       baseURL: "http://localhost:8080",
       validateStatus: null,
     });
+    tester = new Tester(request);
   });
 
   afterAll(async () => {
@@ -29,25 +31,22 @@ describe("INTEGRATION TEST: auth", () => {
 
   describe("POST to /auth/signup", () => {
     it("returns 201 with authorization token when user provides valid information", async () => {
-      const user = makeValidUserDetails();
+      const signup = tester.getSignUpInfo();
 
-      const res = await request.post("/auth/signup", user);
+      const res = await request.post("/auth/signup", signup);
 
       expect(res.status).toBe(201);
       expect(res.data.token.length).toBeGreaterThan(0);
     });
 
     it("returns 409 for existing user", async () => {
-      const user = makeValidUserDetails();
-      const error = { message: `${user.username} already exists` };
+      const signup = tester.getSignUpInfo();
+      const error = { message: `${signup["username"]} already exists` };
 
-      const res_1 = await request.post("/auth/signup", user);
-      expect(res_1.status).toBe(201);
+      const res = await request.post("/auth/signup", signup);
 
-      const res_2 = await request.post("/auth/signup", user);
-
-      expect(res_2.status).toBe(409);
-      expect(res_2.data).toMatchObject(error);
+      expect(res.status).toBe(409);
+      expect(res.data).toMatchObject(error);
     });
 
     test.each([
@@ -64,10 +63,10 @@ describe("INTEGRATION TEST: auth", () => {
     ])(
       `returns 400 for the validation fail when $missingFieldName field is missing`,
       async ({ missingFieldName, expectedMessage }) => {
-        const user = makeValidUserDetails();
-        delete user[missingFieldName];
+        const signup = tester.getSignUpInfo();
+        delete signup[missingFieldName];
 
-        const res = await request.post("/auth/signup", user);
+        const res = await request.post("/auth/signup", signup);
 
         expect(res.status).toBe(400);
         expect(res.data.message).toBe(expectedMessage);
@@ -86,24 +85,118 @@ describe("INTEGRATION TEST: auth", () => {
     ])(
       `returns 400 for the validation fail when $fieldName is too short`,
       async ({ fieldName, expectedMessage }) => {
-        const user = makeValidUserDetails();
-        user[fieldName] = faker.internet.password(3);
+        const signup = tester.getNewUserInfo();
+        signup[fieldName] = faker.random.alphaNumeric(3);
 
-        const res = await request.post("/auth/signup", user);
+        const res = await request.post("/auth/signup", signup);
 
         expect(res.status).toBe(400);
         expect(res.data.message).toBe(expectedMessage);
       }
     );
   });
+
+  describe("POST to /auth/login", () => {
+    it("returns 200 with username and token", async () => {
+      const user = await tester.createNewAccount();
+
+      const res = await request.post("/auth/login", {
+        username: user.username,
+        password: user.password,
+      });
+
+      expect(res.status).toBe(200);
+      expect(res.data.username).toBe(user["username"]);
+      expect(res.data.token.length).toBeGreaterThan(0);
+    });
+
+    test.each([
+      { testCase: "inexistent user", fieldName: "username" },
+      { testCase: "invalid password", fieldName: "password" },
+    ])(`returns 401 for $testCase`, async ({ fieldName }) => {
+      const user = await tester.createNewAccount();
+      user[fieldName] = user[fieldName] + "X";
+      const error = { message: "Invalid user or password" };
+
+      const res = await request.post("/auth/login", {
+        username: user.username,
+        password: user.password,
+      });
+
+      expect(res.status).toBe(401);
+      expect(res.data).toMatchObject(error);
+    });
+  });
+
+  describe("POST to /auth/logout", () => {
+    it("returns 200 with success message", async () => {
+      const message = { message: "User has been logged out" };
+
+      const res = await request.post("/auth/logout");
+
+      expect(res.status).toBe(200);
+      expect(res.data).toMatchObject(message);
+    });
+  });
+
+  describe("GET to /auth/me", () => {
+    it("returns 200 with username and token", async () => {
+      const user = await tester.createNewAccount();
+
+      const res = await request.get("/auth/me", {
+        headers: { Authorization: `Bearer ${user.jwt}` },
+      });
+
+      expect(res.status).toBe(200);
+      expect(res.data).toMatchObject({
+        username: user.username,
+        token: user.jwt,
+      });
+    });
+  });
 });
 
-function makeValidUserDetails() {
-  const fakeUser = faker.helpers.userCard();
-  return {
-    name: fakeUser.name,
-    username: fakeUser.username,
-    email: fakeUser.email,
-    password: faker.internet.password(10, true),
-  };
+class Tester {
+  constructor(request) {
+    this.request = request;
+    this.fakeUser = {
+      ...faker.helpers.userCard(),
+      password: faker.internet.password(10, true),
+    };
+  }
+
+  getNewUserInfo() {
+    const newTester = faker.helpers.userCard();
+    return {
+      name: newTester.name,
+      username: newTester.username,
+      email: newTester.email,
+      password: faker.internet.password(10, true),
+    };
+  }
+
+  getSignUpInfo() {
+    return {
+      name: this.fakeUser.name,
+      username: this.fakeUser.username,
+      email: this.fakeUser.email,
+      password: this.fakeUser.password,
+    };
+  }
+
+  getLoginInfo() {
+    return {
+      username: this.fakeUser.username,
+      password: this.fakeUser.password,
+    };
+  }
+
+  async createNewAccount() {
+    const newTester = this.getNewUserInfo();
+    const res = await this.request.post("/auth/signup", newTester);
+    return {
+      ...newTester,
+      jwt: res.data.token,
+    };
+  }
 }
