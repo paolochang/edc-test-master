@@ -198,7 +198,7 @@ describe("INTEGRATION TEST: auth", () => {
         const tweet = await tester.createNewTweet(user.jwt);
 
         const res = await request.put(
-          `/tweets/${tweet.id}`,
+          `/tweets/${tweet.data.id}`,
           {
             text: "edited tweet",
           },
@@ -232,7 +232,7 @@ describe("INTEGRATION TEST: auth", () => {
         const tweet = await tester.createNewTweet(user1.jwt);
 
         const res = await request.put(
-          `/tweets/${tweet.id}`,
+          `/tweets/${tweet.data.id}`,
           {
             text: "edited tweet",
           },
@@ -331,7 +331,56 @@ describe("INTEGRATION TEST: auth", () => {
       });
     });
 
-    describe("DELETE", () => {});
+    describe("DELETE", () => {
+      it("returns 204 and delete the tweet", async () => {
+        const user = await tester.createNewAccount();
+        const tweet = await tester.createNewTweet(user.jwt);
+        const error = { message: `Tweet id(${tweet.data.id}) not found` };
+
+        const res = await request.delete(`/tweets/${tweet.data.id}`, {
+          headers: { Authorization: `Bearer ${user.jwt}` },
+        });
+
+        const check = await request.get(`/tweets/${tweet.data.id}`, {
+          headers: { Authorization: `Bearer ${user.jwt}` },
+        });
+
+        expect(res.status).toBe(204);
+        expect(check.status).toBe(404);
+        expect(check.data).toMatchObject(error);
+      });
+
+      it("returns 404 when tweet id is not found", async () => {
+        const user = await tester.createNewAccount();
+        const tweetId = faker.random.alpha(3);
+        const error = { message: `Tweet not found: ${tweetId}` };
+
+        const res = await request.delete(`/tweets/${tweetId}`, {
+          headers: { Authorization: `Bearer ${user.jwt}` },
+        });
+
+        expect(res.status).toBe(404);
+        expect(res.data).toMatchObject(error);
+      });
+
+      it("returns 403 when tweet is not belong to the user", async () => {
+        const user1 = await tester.createNewAccount();
+        const user2 = await tester.createNewAccount();
+        const tweet = await tester.createNewTweet(user2.jwt);
+
+        const res = await request.delete(`/tweets/${tweet.data.id}`, {
+          headers: { Authorization: `Bearer ${user1.jwt}` },
+        });
+
+        const check = await request.get(`/tweets/${tweet.data.id}`, {
+          headers: { Authorization: `Bearer ${user2.jwt}` },
+        });
+
+        expect(res.status).toBe(403);
+        expect(check.status).toBe(200);
+        expect(check.data.text).toBe(tweet.data.text);
+      });
+    });
   });
 });
 
@@ -381,13 +430,12 @@ class Tester {
 
   async createNewTweet(token) {
     const text = faker.random.words(3);
-    const res = await this.request.post(
+    return await this.request.post(
       "/tweets",
       { text },
       {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    return res.data;
   }
 }
