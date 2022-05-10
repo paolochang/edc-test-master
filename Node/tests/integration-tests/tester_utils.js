@@ -28,13 +28,6 @@ export default class Tester {
     };
   }
 
-  getLoginInfo() {
-    return {
-      username: this.fakeUser.username,
-      password: this.fakeUser.password,
-    };
-  }
-
   async createNewAccount() {
     const newTester = this.getNewUserInfo();
     const res = await this.request.post("/auth/signup", newTester);
