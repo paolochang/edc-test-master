@@ -24,7 +24,7 @@ export default {
     "**/*.{js,jsx}",
     "!**/node_modules/**",
     "!**/coverage/**",
-    "!**/tests/integration-tests/global-teardown.js",
+    "!**/integration-tests/**",
   ],
 
   // The directory where Jest should output its coverage files
